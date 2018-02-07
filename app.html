@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Clock</title>
+    <style>
+    h1{
+      margin-left: 300px;
+    }
+    button{
+      margin-top: 50px;
+      line-height: 100px;
+      font-weight: bold;
+      background: green;
+      border: white;
+      margin-left: 400px;
+    }
+    </style>
+</head>
+<body>
+  <h1>Welcome to my clock!</h1>
+  <button onclick = "ticktock()">What time is it?</button>
+</body>
+
+<script>
+var express = require('express');
+var path = require('path');
+var app = express();
+
+app.use(function(req, res){
+  var err = new Error('Not found!!');
+  res.send(ticktock);
+  err.status = 404;
+});
+
+app.listen(3000);
+
+var myTime; //global variable
+function ticktock(){
+        var today = new Date();
+        var hour = today.getHours();
+        var minute = today.getMinutes();
+        var second = today.getSeconds();
+        window.alert(hour + ":" + minute + ":" + second);
+
+        myTime = setTimeout(ticktock, 1000);
+        console.log(hour + minute + second);
+}
+
+</script>
